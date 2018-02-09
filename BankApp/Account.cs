@@ -1,24 +1,28 @@
 // BankApp.Account
 using BankApp;
 using System;
+using System.ComponentModel.DataAnnotations;
 
-internal enum AccountType
+public enum AccountType
 {
     Checking,
     Savings,
     Loan,
     CD
 }
-internal class Account
+public class Account
 {
 	private static int lastAccountNumber = 0;
 
-	public int AccountNumber
+
+     [Key]
+    public int AccountNumber
 	{
 		get;
 		private set;
 	}
 
+    [StringLength(50,ErrorMessage = "Account Name must be less than 50 characters")]
 	public string AccountName
 	{
 		get;
@@ -36,14 +40,15 @@ internal class Account
 		get;
 		private set;
 	}
-
+    [Required]
 	public AccountType TypeOfAccount
 	{
 		get;
 		set;
 	}
 
-	public string EmailAddress
+    [Required]
+    public string EmailAddress
 	{
 		get;
 		set;
